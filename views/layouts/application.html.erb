@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>RailsBasics</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <!-- '=' means out put. -->
+    <!-- '%' means do some logics like if or loop etc. -->
+    <!-- 'render' reads '.erb' files that starts with an 'underscore' and ends with '.html' -->
+    <%= render 'home/header' %> 
+    <%= yield %>
+  </body>
+</html>
