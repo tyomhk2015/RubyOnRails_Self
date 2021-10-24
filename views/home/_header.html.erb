@@ -9,7 +9,12 @@
       <%= link_to "ABOUT US", home_about_path %>
     </li>
     <li>
-      <%= link_to "SERVICE", home_service_path %>
+      <!-- When not sure about all the available routes, use 'rails routes' command. -->
+      <%= link_to "SHOW SERVICES", services_path %>
+    </li>
+    <li>
+      <!-- Utilized 'rails routes' for getting a GET route for adding a new service. -->
+      <%= link_to "ADD A SERVICE", new_service_path %>
     </li>
   </ul>
 </nav>
