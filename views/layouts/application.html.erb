@@ -15,6 +15,11 @@
     <!-- '%' means do some logics like if or loop etc. -->
     <!-- 'render' reads '.erb' files that starts with an 'underscore' and ends with '.html' -->
     <%= render 'home/header' %> 
+    
+    <% if notice %>
+      <%= render 'layouts/alerts' %> <!-- Called as 'Partials' -->
+    <% end %>
+
     <%= yield %>
   </body>
 </html>
