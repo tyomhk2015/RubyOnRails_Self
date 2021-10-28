@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   # This has all the routes related to 'services', made by scaffold.
   # Instead of visiting 'SHOW SERVICE', utilizing 'rails routes' command will make the POST much easier.
   resources :services
