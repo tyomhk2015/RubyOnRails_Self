@@ -12,10 +12,28 @@
       <!-- When not sure about all the available routes, use 'rails routes' command. -->
       <%= link_to "SHOW SERVICES", services_path %>
     </li>
-    <li>
-      <!-- Utilized 'rails routes' for getting a GET route for adding a new service. -->
-      <%= link_to "ADD A SERVICE", new_service_path %>
-    </li>
+
+    <!-- Devise routes-->
+    <% if user_signed_in? %>
+      <li>
+        <!-- Utilized 'rails routes' for getting a GET route for adding a new service. -->
+        <%= link_to "ADD A SERVICE", new_service_path %>
+      </li>
+      <li>
+        <!-- Delete a user in the session table, by adding 'method' attribute and ':delete' as the value of it. -->
+        <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+      </li>
+      <li>
+        <%= link_to "Edit Profile", edit_user_registration_path %>
+      </li>
+    <% else %>
+      <li>
+        <%= link_to "Sign In", new_user_session_path %>
+      </li>
+      <li>
+        <%= link_to "Sign Up", new_user_registration_path %>
+      </li>
+    <% end %>
   </ul>
 </nav>
 </header>
