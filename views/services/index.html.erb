@@ -9,26 +9,41 @@
       <th>Email</th>
       <th>Phone</th>
       <th>Twitter</th>
+      <th>User ID</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @services.each do |service| %>
+      <% if current_user === service.user %>
       <tr>
         <td><%= service.name %></td>
         <td><%= service.type %></td>
         <td><%= service.email %></td>
         <td><%= service.phone %></td>
         <td><%= service.twitter %></td>
+        <td><%= service.user_id %></td>
         <td><%= link_to 'Show', service %></td>
-        <td><%= link_to 'Edit', edit_service_path(service) %></td>
-        <td><%= link_to 'Destroy', service, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <!-- Show the manipulation options only to the user who've written this service. -->
+        <!--
+          HTML comment cannot comment out rails codes, use # for commenting rails code.
+        -->
+          <td><%= link_to 'Edit', edit_service_path(service) %></td>
+          <td><%= link_to 'Destroy', service, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <!-- Observing service object. -->
+        <!--
+        <%# <%= service.user.inspect %><br> %>
+        -->
       </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
+<!-- Observing the current user obejct. -->
+<%= current_user.inspect %>
 
 <br>
-
-<%= link_to 'New Service', new_service_path %>
+<% if user_signed_in? %>
+  <%= link_to 'New Service', new_service_path %>
+<% end %>
