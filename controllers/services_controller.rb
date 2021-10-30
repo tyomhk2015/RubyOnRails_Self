@@ -1,5 +1,10 @@
 class ServicesController < ApplicationController
+  # before_action : Do something before excecuting codes after the current line.
   before_action :set_service, only: %i[ show edit update destroy ]
+  # If the user is not logged in, do not let them do anything except /index and /show.
+  before_action :authenticate_user!, except: [:index, :show]
+  # Only validated user is eligible for the following actions, 'edit', 'update', and 'destory'.
+  before_action :validate_user, only: [:edit, :update, :destroy]
 
   # GET /services or /services.json
   def index
@@ -12,7 +17,9 @@ class ServicesController < ApplicationController
 
   # GET /services/new
   def new
-    @service = Service.new
+    # @service = Service.new
+    # Let the rails to utilize the current user's service data
+    @service = current_user.services.build
   end
 
   # GET /services/1/edit
@@ -21,7 +28,9 @@ class ServicesController < ApplicationController
 
   # POST /services or /services.json
   def create
-    @service = Service.new(service_params)
+    # @service = Service.new(service_params)
+    # Let the rails to utilize the current user's service data
+    @service = current_user.services.build(service_params)
 
     respond_to do |format|
       if @service.save
@@ -54,6 +63,11 @@ class ServicesController < ApplicationController
       format.html { redirect_to services_url, notice: "Service was successfully destroyed." }
       format.json { head :no_content }
     end
+  end
+
+  def validate_user
+    @service = current_user.services.find_by(id: params[:id])
+    redirect_to services_path, notice: "◆◆ Not authorized user ◆◆" if @service.nil?
   end
 
   private
