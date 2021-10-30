@@ -63,7 +63,7 @@ class ServicesController < ApplicationController
     end
 
     # Only allow a list of trusted parameters through.
-    def service_params
-      params.require(:service).permit(:name, :type, :email, :phone, :twitter)
+    def service_params # This is where data from the form field can be recieved.
+      params.require(:service).permit(:name, :type, :email, :phone, :twitter, :user_id)
     end
 end

@@ -36,6 +36,12 @@
     <%= form.text_field :twitter %>
   </div>
 
+  <div class="field">
+    <%= form.label :user_id %>
+    <!-- Get the ID number of current user. -->
+    <%= form.number_field :user_id, id: :service_user_id , value: current_user.id %>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
