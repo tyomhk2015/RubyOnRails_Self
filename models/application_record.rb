@@ -8,4 +8,5 @@ class ApplicationRecord < ActiveRecord::Base
   # https://stackoverflow.com/questions/11984893/issue-with-column-name-type-in-rails-3
   # Single Table Inheritance : https://www.freecodecamp.org/news/single-table-inheritance-vs-polymorphic-associations-in-rails-af3a07a204f2/
   self.inheritance_column = :_type_disabled
+  self.inheritance_column = nil
 end
